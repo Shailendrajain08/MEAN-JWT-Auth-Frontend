@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from '../../validatores/confirmPassword.validator';
+import { confirmPasswordValidator } from '../../validators/confirmPassword.validator';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 
@@ -12,8 +12,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export default class RegisterComponent implements OnInit {
-
+export default class RegisterComponent {
   fb = inject(FormBuilder)
   authService = inject(AuthService)
   registerForm !: FormGroup;

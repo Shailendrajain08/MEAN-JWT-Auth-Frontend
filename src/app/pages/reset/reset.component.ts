@@ -2,8 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { confirmPasswordValidator } from '../../validatores/confirmPassword.validator';
+import { confirmPasswordValidator } from '../../validators/confirmPassword.validator';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-reset',
   standalone: true,
@@ -11,8 +12,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './reset.component.html',
   styleUrl: './reset.component.scss'
 })
-
-export default class ResetComponent implements OnInit {  
+export default class ResetComponent {
   fb = inject(FormBuilder)
   resetForm !: FormGroup;
   router = inject(Router);
@@ -47,6 +47,7 @@ export default class ResetComponent implements OnInit {
         alert(res.message);
         this.resetForm.reset();
         this.router.navigate(['/login'])
+        window.location.reload();
       },
       error: (err) => {
         alert(err.error.message)

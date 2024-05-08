@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export default class LoginComponent implements OnInit {
+export default class LoginComponent implements OnInit{
 
   fb = inject(FormBuilder)
   authService = inject(AuthService)
@@ -29,7 +29,10 @@ export default class LoginComponent implements OnInit {
     this.authService.loginService(this.registerForm.value).subscribe({
       next: (res) => {
         alert("Login Successful!");
-        this.router.navigate(['/home'])
+        localStorage.setItem("user_id", res.data._id);
+        this.authService.isLoggedIn$.next(true);
+        this.router.navigate(['/home']);
+        this.registerForm.reset();
       },
       error: (err) => {
         console.log(err);
@@ -38,7 +41,3 @@ export default class LoginComponent implements OnInit {
   }
 
 }
-
-
-
-

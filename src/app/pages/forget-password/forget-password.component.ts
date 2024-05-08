@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
-export default class ForgetPasswordComponent implements OnInit {
+export default class ForgetPasswordComponent {
   forgetForm !: FormGroup;
   fb = inject(FormBuilder)
   authService = inject(AuthService)
