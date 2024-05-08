@@ -17,4 +17,12 @@ export class AuthService {
     return this.http.post<any>(`${apiUrls.authServiceApi}login`, loginObj);
   }
 
+  sendEmailService(email:string) {
+    return this.http.post<any>(`${apiUrls.authServiceApi}forgetPassword`, {email:email});
+  }
+
+  resetPasswordService(resetObj: any) {
+    return this.http.post<any>(`${apiUrls.authServiceApi}resetPassword`, resetObj);
+  }
+
 }
